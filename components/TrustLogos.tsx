@@ -39,7 +39,7 @@ const item = {
 
 export function TrustLogos() {
   return (
-    <section className="bg-zinc-900 py-16">
+    <section className="relative py-16">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -48,10 +48,10 @@ export function TrustLogos() {
           transition={{ duration: 0.5 }}
           className="text-center mb-10"
         >
-          <h2 className="text-2xl font-semibold text-zinc-100 mb-3">
+          <h2 className="text-2xl font-semibold text-white mb-3">
             Trusted by Service Businesses
           </h2>
-          <p className="text-zinc-400 max-w-2xl mx-auto">
+          <p className="text-zinc-300 max-w-2xl mx-auto">
             Helping professionals grow their businesses without technical complexity
           </p>
         </motion.div>
@@ -70,10 +70,10 @@ export function TrustLogos() {
                 variants={item} 
                 className="flex flex-col items-center"
               >
-                <div className="bg-indigo-900/40 p-4 rounded-full mb-3 border border-indigo-700/20">
+                <div className="bg-zinc-800/50 p-4 rounded-full mb-3 border border-purple-900/20">
                   <Icon className="w-6 h-6 text-indigo-400" />
                 </div>
-                <p className="text-zinc-200 font-semibold">{name}</p>
+                <p className="text-white font-semibold">{name}</p>
                 <p className="text-indigo-400 text-sm font-medium">{count} Clients</p>
               </motion.div>
             ))}
@@ -86,7 +86,7 @@ export function TrustLogos() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <div className="border-t border-zinc-800 pt-10">
+          <div className="border-t border-purple-900/20 pt-10">
             <div className="flex flex-wrap justify-center gap-8 md:gap-16">
               {trustPoints.map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-2">

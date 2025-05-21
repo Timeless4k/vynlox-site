@@ -1,154 +1,142 @@
 'use client';
 
-import { Mail, Twitter, Linkedin, ArrowRight, Phone } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
+import { ArrowRight, Mail, Phone } from 'lucide-react';
 
 const navigation = {
-  main: [
-    { name: 'Services', href: '#services' },
-    { name: 'Process', href: '#process' },
-    { name: 'Pricing', href: '#pricing' },
-    { name: 'FAQ', href: '#faq' },
+  company: [
+    { name: 'About', href: '#' },
+    { name: 'Blog', href: '#' },
+    { name: 'Careers', href: '#' },
+    { name: 'Contact', href: '#' },
   ],
   services: [
-    { name: 'AI Sales Assistant', href: '#services' },
-    { name: 'Business Automation', href: '#services' },
-    { name: 'AI-Enhanced Websites', href: '#services' },
-    { name: 'Knowledge Workers', href: '#services' },
+    { name: 'AI Automation', href: '#services' },
+    { name: 'Customer Support', href: '#services' },
+    { name: 'Business Tools', href: '#services' },
+    { name: 'AI Assistant', href: '#services' },
+    { name: 'Free Webinar', href: '#webinar' },
   ],
   legal: [
-    { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'Terms of Service', href: '/terms' },
-  ],
-  social: [
-    {
-      name: 'Email',
-      href: 'mailto:hello@vynlox.com',
-      icon: Mail,
-    },
-    {
-      name: 'Twitter',
-      href: 'https://twitter.com/vynlox',
-      icon: Twitter,
-    },
-    {
-      name: 'LinkedIn',
-      href: 'https://linkedin.com/company/vynlox',
-      icon: Linkedin,
-    },
+    { name: 'Privacy', href: '#' },
+    { name: 'Terms', href: '#' },
   ],
 };
 
 export function Footer() {
   return (
-    <footer className="bg-white border-t border-zinc-200">
-      <div className="max-w-7xl mx-auto pt-16 pb-8 px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          {/* Company info */}
-          <div className="col-span-1 lg:col-span-1">
-            <div className="mb-6">
-              <span className="text-2xl font-bold font-display tracking-tight bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                Vynlox
-              </span>
-            </div>
-            <p className="text-zinc-600 mb-6 text-sm">
-              Helping service businesses scale smarter with AI solutions — without hiring developers or learning code.
-            </p>
-            <div className="flex space-x-4">
-              {navigation.social.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-zinc-400 hover:text-indigo-600 transition-colors"
-                >
-                  <span className="sr-only">{item.name}</span>
-                  <item.icon className="h-5 w-5" aria-hidden="true" />
-                </a>
-              ))}
-            </div>
-          </div>
-          
-          {/* Site Links */}
-          <div>
-            <h3 className="text-zinc-900 font-semibold mb-4">
-              Navigation
-            </h3>
-            <ul className="space-y-3">
-              {navigation.main.map((item) => (
-                <li key={item.name}>
-                  <a
-                    href={item.href}
-                    className="text-zinc-600 hover:text-indigo-600 transition-colors text-sm"
-                  >
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h3 className="text-zinc-900 font-semibold mb-4">
-              Services
-            </h3>
-            <ul className="space-y-3">
-              {navigation.services.map((item) => (
-                <li key={item.name}>
-                  <a
-                    href={item.href}
-                    className="text-zinc-600 hover:text-indigo-600 transition-colors text-sm"
-                  >
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="text-zinc-900 font-semibold mb-4">
-              Get in Touch
-            </h3>
-            <div className="space-y-3 text-sm mb-6">
-              <p className="text-zinc-600">
-                <Mail className="h-4 w-4 inline-block mr-2 text-indigo-600" />
-                hello@vynlox.com
-              </p>
-              <p className="text-zinc-600">
-                <Phone className="h-4 w-4 inline-block mr-2 text-indigo-600" />
-                +61 2 8888 8888
-              </p>
-            </div>
-            <Button 
-              size="sm" 
-              variant="outline" 
-              className="rounded-lg border-indigo-200 text-indigo-600 hover:bg-indigo-50 hover:text-indigo-700 hover:border-indigo-300"
+    <footer className="bg-zinc-900 border-t border-purple-900/20">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+          <div className="space-y-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
             >
-              Book Free Call
-              <ArrowRight className="ml-2 h-3 w-3" />
-            </Button>
+              <a href="#" className="text-2xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
+                Vynlox
+              </a>
+              <p className="mt-4 text-zinc-300 text-sm leading-6">
+                Making AI automation simple for service businesses. Save time, get more customers, and grow faster.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="flex space-x-6"
+            >
+              <a
+                href="mailto:hello@vynlox.com"
+                className="text-zinc-400 hover:text-indigo-300 transition-colors"
+              >
+                <Mail className="h-5 w-5" />
+                <span className="sr-only">Email</span>
+              </a>
+              <a
+                href="tel:+61400000000"
+                className="text-zinc-400 hover:text-indigo-300 transition-colors"
+              >
+                <Phone className="h-5 w-5" />
+                <span className="sr-only">Phone</span>
+              </a>
+            </motion.div>
+          </div>
+
+          <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+            <div className="md:grid md:grid-cols-2 md:gap-8">
+              <div>
+                <h3 className="text-sm font-semibold text-white">Company</h3>
+                <ul className="mt-6 space-y-4">
+                  {navigation.company.map((item) => (
+                    <li key={item.name}>
+                      <a
+                        href={item.href}
+                        className="text-sm text-zinc-300 hover:text-indigo-300 transition-colors"
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mt-10 md:mt-0">
+                <h3 className="text-sm font-semibold text-white">Services</h3>
+                <ul className="mt-6 space-y-4">
+                  {navigation.services.map((item) => (
+                    <li key={item.name}>
+                      <a
+                        href={item.href}
+                        className="text-sm text-zinc-300 hover:text-indigo-300 transition-colors"
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <div className="md:grid md:grid-cols-2 md:gap-8">
+              <div>
+                <h3 className="text-sm font-semibold text-white">Legal</h3>
+                <ul className="mt-6 space-y-4">
+                  {navigation.legal.map((item) => (
+                    <li key={item.name}>
+                      <a
+                        href={item.href}
+                        className="text-sm text-zinc-300 hover:text-indigo-300 transition-colors"
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mt-10 md:mt-0">
+                <h3 className="text-sm font-semibold text-white">Book a Call</h3>
+                <p className="mt-4 text-sm text-zinc-300">
+                  Ready to save time and grow your business? Let's chat about how we can help.
+                </p>
+                <a
+                  href="#pricing"
+                  className="mt-4 inline-flex items-center text-sm font-medium text-indigo-400 hover:text-indigo-300 transition-colors"
+                >
+                  Book Your Free Strategy Call
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-        
-        {/* Bottom section */}
-        <div className="pt-8 mt-8 border-t border-zinc-200 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-zinc-500 text-sm">
+
+        <div className="mt-16 border-t border-purple-900/20 pt-8">
+          <p className="text-sm text-zinc-400">
             &copy; {new Date().getFullYear()} Vynlox. All rights reserved.
           </p>
-          
-          <div className="mt-4 md:mt-0 flex space-x-6">
-            {navigation.legal.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-zinc-500 hover:text-zinc-700 text-sm"
-              >
-                {item.name}
-              </a>
-            ))}
-          </div>
         </div>
       </div>
     </footer>

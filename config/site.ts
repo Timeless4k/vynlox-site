@@ -8,12 +8,22 @@ export const siteConfig = {
     linkedin: 'https://linkedin.com/company/vynlox',
     email: 'mailto:hello@vynlox.com'
   },
-  navigation: [
-    { name: 'Services', href: '#services' },
-    { name: 'Process', href: '#process' },
-    { name: 'Pricing', href: '#pricing' },
-    { name: 'FAQ', href: '#faq' }
-  ],
+  navigation: {
+    main: [
+      { name: 'Services', href: '/#services' },
+      { name: 'Process', href: '/#process' },
+      { name: 'Pricing', href: '/#pricing' },
+      { name: 'FAQ', href: '/#faq' },
+      { name: 'Learn', href: '/learn' }
+    ],
+    learn: [
+      { name: 'Services', href: '/#services' },
+      { name: 'Process', href: '/#process' },
+      { name: 'Pricing', href: '/#pricing' },
+      { name: 'FAQ', href: '/#faq' },
+      { name: 'Learn', href: '/learn' }
+    ]
+  },
   hero: {
     title: 'Scale Smarter with AI — Without Hiring Developers',
     description: 'Vynlox helps service businesses streamline operations, capture more leads, and unlock growth using AI, GPT tools, and automation.',

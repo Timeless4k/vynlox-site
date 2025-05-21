@@ -6,46 +6,46 @@ import { MessageSquare, Zap, Folder, Brain, Check } from 'lucide-react';
 const services = [
   {
     icon: MessageSquare,
-    title: '24/7 AI Assistant',
-    description: 'AI-powered conversation engine that answers inquiries, qualifies leads, and books meetings while you sleep.',
+    title: '24/7 Customer Support',
+    description: 'Let our AI handle customer questions, book meetings, and qualify leads — even while you sleep.',
     benefits: [
-      'Instant response to customer inquiries',
-      'Pre-qualification of leads',
-      'Automated meeting booking',
-      '24/7 availability'
+      'Answer customer questions instantly',
+      'Book meetings automatically',
+      'Qualify leads 24/7',
+      'Never miss a customer message'
     ]
   },
   {
     icon: Zap,
     title: 'Business Automation',
-    description: 'Streamline customer onboarding, automate follow-ups, and eliminate manual tasks with intelligent workflows.',
+    description: 'Automate your follow-ups, client tasks, and admin work — so you can focus on what matters.',
     benefits: [
-      'Reduce operational overhead',
-      'Consistent client experience',
-      'Automated task management',
-      'Integration with existing systems'
+      'Save hours on repetitive tasks',
+      'Keep clients happy with timely follow-ups',
+      'Never forget important tasks',
+      'Work with your existing tools'
     ]
   },
   {
     icon: Folder,
-    title: 'AI-Enhanced Websites',
-    description: 'Convert more visitors with intelligent forms, AI chatbots, and personalized user experiences.',
+    title: 'Smart Website Tools',
+    description: 'Turn more website visitors into paying customers with easy-to-use tools.',
     benefits: [
-      'Higher conversion rates',
-      'Personalized user journeys',
-      'Real-time visitor engagement',
-      'Automated lead nurturing'
+      'Convert more visitors into leads',
+      'Answer questions instantly',
+      'Follow up automatically',
+      'Make your website work for you'
     ]
   },
   {
     icon: Brain,
-    title: 'Knowledge Workers',
-    description: 'Custom AI agents that leverage your existing documentation, SOPs, and business knowledge.',
+    title: 'Business Assistant',
+    description: 'Train an AI assistant on your business knowledge to help your team work smarter.',
     benefits: [
-      'Instant access to company knowledge',
-      'Consistent information delivery',
-      'Reduced training costs',
-      'Scalable expertise'
+      'Find information instantly',
+      'Train new team members faster',
+      'Save time on repetitive questions',
+      'Share knowledge easily'
     ]
   }
 ];
@@ -67,7 +67,7 @@ const item = {
 
 export function ServicesOverview() {
   return (
-    <section id="services" className="bg-zinc-50 py-24 md:py-32">
+    <section id="services" className="py-24 md:py-32 relative">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -76,15 +76,15 @@ export function ServicesOverview() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800 mb-4">
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
             Our Services
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 font-display mb-4">
-            Smarter Systems. Less Chaos. <br className="hidden md:block" />
-            <span className="text-indigo-600">More Growth</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-white font-display mb-4">
+            Automate the Repetitive Work. <br className="hidden md:block" />
+            <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent">Free Up Your Time.</span>
           </h2>
-          <p className="text-zinc-600 max-w-2xl mx-auto text-lg">
-            We design and implement AI systems that remove bottlenecks, free up your time, and scale operations — without requiring technical expertise.
+          <p className="text-zinc-300 max-w-2xl mx-auto text-lg">
+            We help you automate the tasks that eat up your time, so you can focus on what matters most — growing your business.
           </p>
         </motion.div>
 
@@ -93,35 +93,38 @@ export function ServicesOverview() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
-          {services.map((service) => {
-            const Icon = service.icon;
-            return (
-              <motion.div key={service.title} variants={item}>
-                <div className="bg-white rounded-2xl p-8 border border-zinc-200 shadow-sm hover:shadow-md transition duration-300 ease-out h-full flex flex-col">
-                  <div className="flex items-center mb-4">
-                    <div className="bg-indigo-100 p-3 rounded-xl mr-4">
-                      <Icon className="w-6 h-6 text-indigo-600" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-zinc-900">{service.title}</h3>
+          {services.map((service, index) => (
+            <motion.div
+              key={service.title}
+              variants={item}
+              className="group relative bg-zinc-800/50 p-8 rounded-xl border border-purple-900/20 hover:border-indigo-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/5"
+            >
+              {/* Gradient overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/0 via-purple-500/0 to-indigo-500/0 group-hover:from-indigo-500/5 group-hover:via-purple-500/5 group-hover:to-indigo-500/5 rounded-xl transition-all duration-300" />
+              
+              <div className="relative">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center group-hover:from-indigo-500/30 group-hover:to-purple-500/30 transition-all duration-300">
+                    <service.icon className="w-6 h-6 text-indigo-400 group-hover:text-indigo-300 transition-colors" />
                   </div>
-                  <p className="text-zinc-600 mb-6">{service.description}</p>
-                  <div className="mt-auto">
-                    <h4 className="font-medium text-zinc-800 mb-3">Key Benefits:</h4>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-indigo-300 transition-colors">{service.title}</h3>
+                    <p className="text-zinc-300 mb-4">{service.description}</p>
                     <ul className="space-y-2">
-                      {service.benefits.map((benefit, i) => (
-                        <li key={i} className="flex items-start">
-                          <Check className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
-                          <span className="text-zinc-600 text-sm">{benefit}</span>
+                      {service.benefits.map((benefit) => (
+                        <li key={benefit} className="flex items-center text-zinc-300 group-hover:text-zinc-200 transition-colors">
+                          <Check className="w-4 h-4 text-indigo-400 mr-2 flex-shrink-0 group-hover:text-indigo-300 transition-colors" />
+                          <span>{benefit}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 </div>
-              </motion.div>
-            );
-          })}
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
