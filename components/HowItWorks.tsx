@@ -1,38 +1,75 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ChevronRight, Phone, Map, FileText, Hammer, RefreshCw, Users } from 'lucide-react';
+import { 
+  ChevronRight, 
+  Users, 
+  Video, 
+  Phone, 
+  Brain, 
+  FileText, 
+  CheckCircle, 
+  Wrench, 
+  Rocket, 
+  RefreshCw 
+} from 'lucide-react';
+import { ReactNode } from 'react';
 
-const steps = [
+interface Step {
+  number: string;
+  title: string;
+  description: string;
+  icon: ReactNode;
+}
+
+const steps: Step[] = [
   {
     number: '01',
-    title: 'Free Strategy Call',
-    description: "Let's chat about your business and uncover the fastest ways to save you hours every week.",
-    icon: Phone
+    title: 'Join the Webinar',
+    description: 'Learn how AI can save you 10+ hours/week with real case studies and expert Q&A. ($29–$49)',
+    icon: <Video className="w-7 h-7 text-indigo-300 group-hover:text-indigo-200 transition-colors" />
   },
   {
     number: '02',
-    title: 'Your Custom Roadmap',
-    description: "Get a crystal-clear plan showing exactly how we'll automate your work — tailored to you.",
-    icon: Map
+    title: 'Free Strategy Call',
+    description: '10–20 minute vibe check to see if we\'re a good fit and what you need help with.',
+    icon: <Phone className="w-7 h-7 text-indigo-300 group-hover:text-indigo-200 transition-colors" />
   },
   {
     number: '03',
-    title: 'Simple Proposal',
-    description: "No jargon, no fluff. See what we'll build, how it works, and the results you'll get.",
-    icon: FileText
+    title: 'AI Audit ($499)',
+    description: '90-minute consult + roadmap with 3–5 automation ideas. Fee credited to your project.',
+    icon: <Brain className="w-7 h-7 text-indigo-300 group-hover:text-indigo-200 transition-colors" />
   },
   {
     number: '04',
-    title: 'We Build & Launch',
-    description: "We handle everything — setup, training, and support — so you can focus on your business.",
-    icon: Hammer
+    title: 'Custom Proposal',
+    description: 'We send you a proposal outlining what we\'ll build and how it works.',
+    icon: <FileText className="w-7 h-7 text-indigo-300 group-hover:text-indigo-200 transition-colors" />
   },
   {
     number: '05',
+    title: 'Approve & Start',
+    description: 'You choose what you want to implement. We finalize scope and move forward.',
+    icon: <CheckCircle className="w-7 h-7 text-indigo-300 group-hover:text-indigo-200 transition-colors" />
+  },
+  {
+    number: '06',
+    title: 'We Build It',
+    description: 'We hire vetted Upwork contractors, manage delivery, and keep you updated.',
+    icon: <Wrench className="w-7 h-7 text-indigo-300 group-hover:text-indigo-200 transition-colors" />
+  },
+  {
+    number: '07',
+    title: 'Launch Day',
+    description: 'You get your automation tools with full instructions, training, and support.',
+    icon: <Rocket className="w-7 h-7 text-indigo-300 group-hover:text-indigo-200 transition-colors" />
+  },
+  {
+    number: '08',
     title: 'Ongoing Support',
-    description: "We keep improving your tools and automations, so you keep saving more time as you grow.",
-    icon: RefreshCw
+    description: 'Join our Growth Retainer with monthly 1:1 calls, updates, and performance tracking.',
+    icon: <RefreshCw className="w-7 h-7 text-indigo-300 group-hover:text-indigo-200 transition-colors" />
   }
 ];
 
@@ -78,7 +115,7 @@ export function HowItWorks() {
               <Users className="w-5 h-5 text-indigo-400" />
               Trusted by 70+ businesses
             </span>
-            — here's how we make it easy for you:
+            — here's our proven 8-step process:
           </p>
         </motion.div>
 
@@ -90,19 +127,17 @@ export function HowItWorks() {
           viewport={{ once: true }}
           className="relative"
         >
-          {/* Connecting line */}
-          <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-indigo-500/20 hidden lg:block" />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
             {steps.map((step, index) => (
               <motion.div
                 key={step.number}
                 variants={item}
                 className="group relative"
               >
-                <div className="bg-zinc-800/60 p-8 rounded-xl border border-purple-900/20 hover:border-indigo-500/40 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 h-full flex flex-col items-center text-center">
+                <div className="bg-zinc-800/60 p-8 rounded-xl border border-purple-900/20 hover:border-indigo-500/40 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 h-full flex flex-col items-center text-center hover:scale-105">
                   {/* Icon */}
-                  <div className="flex items-center justify-center w-14 h-14 rounded-lg bg-gradient-to-br from-indigo-500/30 to-purple-500/30 mb-4 group-hover:from-indigo-500/50 group-hover:to-purple-500/50 transition-all duration-300">
-                    <step.icon className="w-7 h-7 text-indigo-300 group-hover:text-indigo-200 transition-colors" />
+                  <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-indigo-500/30 to-purple-500/30 mb-4 group-hover:from-indigo-500/50 group-hover:to-purple-500/50 transition-all duration-300">
+                    {step.icon}
                   </div>
                   <span className="text-xs font-bold text-indigo-400 mb-1 tracking-widest">STEP {step.number}</span>
                   <h3 className="text-lg font-semibold mb-2 text-white group-hover:text-indigo-300 transition-colors">{step.title}</h3>
