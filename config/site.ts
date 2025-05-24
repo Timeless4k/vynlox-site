@@ -14,14 +14,14 @@ export const siteConfig = {
       { name: 'Process', href: '/#process' },
       { name: 'Pricing', href: '/#pricing' },
       { name: 'FAQ', href: '/#faq' },
-      { name: 'Learn', href: '/learn' }
+      { name: 'Workshop', href: '/workshop' }
     ],
     learn: [
       { name: 'Services', href: '/#services' },
       { name: 'Process', href: '/#process' },
       { name: 'Pricing', href: '/#pricing' },
       { name: 'FAQ', href: '/#faq' },
-      { name: 'Learn', href: '/learn' }
+      { name: 'Workshop', href: '/workshop' }
     ]
   },
   hero: {
