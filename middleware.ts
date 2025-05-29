@@ -13,8 +13,8 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  // 🔒 Lock all routes except /coming-soon in production
-  if (path !== '/coming-soon') {
+  // 🔒 Lock all routes except /coming-soon and robots.txt in production
+  if (path !== '/coming-soon' && path !== '/robots.txt') {
     return NextResponse.redirect(new URL('/coming-soon', request.url))
   }
 
@@ -23,6 +23,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico|public|images|images/Logo/Fabicon 512x512.png|sitemap.xml|robots.txt).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|public|images|images/Logo/Fabicon 512x512.png|sitemap.xml).*)',
   ],
 }
