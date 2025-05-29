@@ -27,7 +27,7 @@ export default function ComingSoonPage() {
 
           <div className="space-y-4">
             <motion.a
-              href="https://linkedin.com/in/gurudeep-dhinjan"
+              href="https://www.linkedin.com/company/vynlox/"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
@@ -39,8 +39,8 @@ export default function ComingSoonPage() {
 
             <div className="flex items-center justify-center space-x-4 text-gray-400">
               <Mail className="w-5 h-5" />
-              <a href="mailto:hello@vynlox.com" className="hover:text-white transition-colors">
-                hello@vynlox.com
+              <a href="mailto:helpme@vynlox.com" className="hover:text-white transition-colors">
+                helpme@vynlox.com
               </a>
             </div>
           </div>
