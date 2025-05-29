@@ -2,7 +2,7 @@ export const siteConfig = {
   name: 'Vynlox',
   description: 'AI transformation studio helping service businesses scale smarter.',
   url: 'https://vynlox.com',
-  ogImage: 'https://vynlox.com/og.jpg',
+  ogImage: 'https://vynlox.com/images/Logo/Logo 600x200.png',
   links: {
     twitter: 'https://twitter.com/vynlox',
     linkedin: 'https://linkedin.com/company/vynlox',

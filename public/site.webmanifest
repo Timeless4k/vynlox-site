@@ -1,0 +1,18 @@
+{
+  "name": "Vynlox",
+  "short_name": "Vynlox",
+  "description": "AI transformation studio helping service businesses scale smarter",
+  "icons": [
+    {
+      "src": "/images/Logo/Fabicon 512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#7C3AED",
+  "background_color": "#0F172A",
+  "display": "standalone",
+  "start_url": "/",
+  "orientation": "portrait"
+} 

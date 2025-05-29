@@ -32,7 +32,7 @@ const Navbar = () => {
     <>
       <motion.header
         className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-          isScrolled ? 'bg-[#0F172A]' : 'bg-transparent'
+          isScrolled ? 'bg-[#0b121b]' : 'bg-[#0b121b]/95'
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -46,11 +46,11 @@ const Navbar = () => {
               <div className="flex flex-1">
                 <Link href="/" className="flex-shrink-0">
                   <img
-                    src="/logo.svg"
+                    src="/images/Logo/Logo 320 x 132.png"
                     alt="Vynlox"
-                    className="h-8 w-auto brightness-0 invert"
-                    width={32}
-                    height={32}
+                    className="h-[72px] w-auto"
+                    width={180}
+                    height={72}
                   />
                 </Link>
               </div>
