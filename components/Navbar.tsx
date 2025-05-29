@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
@@ -45,12 +46,13 @@ const Navbar = () => {
               {/* Logo */}
               <div className="flex flex-1">
                 <Link href="/" className="flex-shrink-0">
-                  <img
+                  <Image
                     src="/images/Logo/Logo 320 x 132.png"
                     alt="Vynlox"
                     className="h-[72px] w-auto"
-                    width={180}
-                    height={72}
+                    width={320}
+                    height={132}
+                    priority
                   />
                 </Link>
               </div>
