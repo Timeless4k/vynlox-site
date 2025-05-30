@@ -230,19 +230,6 @@ export default function Footer({ legalOnly = false }: { legalOnly?: boolean }) {
               <p className="text-gray-400">
                 Be first to access workshops, automation templates, and early discounts.
               </p>
-              <EmailCapture
-                purpose={EmailCapturePurpose.NEWSLETTER}
-                title="Stay Updated"
-                buttonText="Notify Me"
-                successMessage="Thanks! We'll keep you updated."
-                additionalFields={{
-                  jobTitle: true,
-                  industry: true,
-                  companySize: true,
-                  preferredContactTime: true,
-                  timezone: true
-                }}
-              />
             </motion.div>
           </div>
         </div>
