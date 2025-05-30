@@ -5,8 +5,24 @@ import { ArrowRight, Mail } from 'lucide-react';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
 import CookieConsent from '@/components/CookieConsent';
+import { useEffect, useState } from 'react';
 
 export default function ComingSoonPage() {
+  // Detect if this is a middleware redirect by checking for a query param or host
+  const [isMiddleware, setIsMiddleware] = useState(false);
+
+  useEffect(() => {
+    // Option 1: Check for a query param (e.g., ?from=middleware)
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('from') === 'middleware') {
+        setIsMiddleware(true);
+      }
+    }
+    // Option 2: Check for host (if you want to distinguish preview/local)
+    // (not reliable for all cases)
+  }, []);
+
   return (
     <>
       <div className="min-h-screen bg-[#0F172A] text-white flex flex-col justify-between p-4">
@@ -64,7 +80,12 @@ export default function ComingSoonPage() {
           }
         `}</style>
       </div>
-      <Footer />
+      {/* Render a blank footer for middleware, otherwise normal Footer */}
+      {isMiddleware ? (
+        <footer className="bg-[#0b121b] w-full" style={{height: 120}} />
+      ) : (
+        <Footer />
+      )}
     </>
   );
 } 
