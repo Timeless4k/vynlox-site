@@ -24,9 +24,19 @@ const validateEnvVars = () => {
 
   if (missingVars.length > 0) {
     if (process.env.NODE_ENV === 'production') {
+      // In production, only log the names
+      console.error('[Brevo] Missing required environment variables:', missingVars);
       throw new Error('Missing required environment variables for Brevo integration: ' + missingVars.join(', '));
     } else {
-      console.warn('[Brevo] Missing required environment variables (development only):', missingVars);
+      // In development, log names and values (mask API key)
+      console.warn('[Brevo] Missing required environment variables (development only):');
+      missingVars.forEach(varName => {
+        let value = process.env[varName];
+        if (varName === 'BREVO_API_KEY') {
+          value = value ? value.slice(0, 4) + '...' : undefined;
+        }
+        console.warn(`  ${varName}:`, value === undefined ? '(undefined)' : `(empty: '${value}')`);
+      });
     }
   }
 };
