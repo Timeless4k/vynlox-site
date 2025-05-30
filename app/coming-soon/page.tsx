@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Mail } from 'lucide-react';
 import Link from 'next/link';
-import Footer from '@/components/Footer';
 import CookieConsent from '@/components/CookieConsent';
 import { useEffect, useState } from 'react';
 
@@ -80,12 +79,6 @@ export default function ComingSoonPage() {
           }
         `}</style>
       </div>
-      {/* Render a blank footer for middleware, otherwise normal Footer */}
-      {isMiddleware ? (
-        <footer className="bg-[#0b121b] w-full" style={{height: 120}} />
-      ) : (
-        <Footer />
-      )}
     </>
   );
 } 
