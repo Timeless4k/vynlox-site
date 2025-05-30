@@ -232,12 +232,15 @@ export default function Footer({ legalOnly = false }: { legalOnly?: boolean }) {
               </p>
               <EmailCapture
                 purpose={EmailCapturePurpose.NEWSLETTER}
+                title="Stay Updated"
                 buttonText="Notify Me"
                 successMessage="Thanks! We'll keep you updated."
                 additionalFields={{
-                  name: true,
-                  company: true,
-                  phone: true
+                  jobTitle: true,
+                  industry: true,
+                  companySize: true,
+                  preferredContactTime: true,
+                  timezone: true
                 }}
               />
             </motion.div>
