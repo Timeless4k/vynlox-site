@@ -239,7 +239,7 @@ export default function FounderStory() {
                 </p>
                 <p>
                   Vynlox was born from real frustration and proven solutions. We use the exact same 
-                  no-code tools and strategies that transformed my businesses to help other founders 
+                  AI automation tools and strategies that transformed my businesses to help other founders 
                   escape the manual work trap.
                 </p>
               </div>

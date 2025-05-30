@@ -49,7 +49,7 @@ export default function LearnPage() {
               </div>
               
               <h1 className="text-4xl sm:text-6xl font-bold mb-6 text-white font-display tracking-tight leading-tight">
-                Struggling to Get Leads or Save Time? Let an AI Agent <span className="bg-gradient-to-r from-purple-400 via-fuchsia-400 to-purple-400 bg-clip-text text-transparent">Do the Work For You</span> — No Devs, No Code.
+                Struggling to Get Leads or Save Time? Let an AI Agent <span className="bg-gradient-to-r from-purple-400 via-fuchsia-400 to-purple-400 bg-clip-text text-transparent">Do the Work For You</span> — No Devs Needed.
               </h1>
               
               <p className="text-xl text-gray-300 mb-8 leading-relaxed">
@@ -158,7 +158,7 @@ export default function LearnPage() {
               <div className="w-16 h-16 bg-purple-500/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-500/20 transition-colors duration-300">
                 <Zap className="w-8 h-8 text-purple-400" />
               </div>
-              <h3 className="text-lg font-semibold mb-3 text-white">See Our Exact No-Code Stack</h3>
+              <h3 className="text-lg font-semibold mb-3 text-white">See Our Exact AI Automation Stack</h3>
               <p className="text-gray-400">We reveal the tools behind Vynlox's own agents. Copy our system.</p>
             </div>
             

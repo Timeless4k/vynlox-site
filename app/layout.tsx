@@ -14,21 +14,21 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://vynlox.com'),
   title: {
-    default: 'Vynlox - AI Automation for Solo Founders | No-Code AI Solutions That Actually Work',
+    default: 'Vynlox - AI Automation for Solo Founders | AI Agent Solutions That Actually Work',
     template: '%s | Vynlox - AI Automation for Entrepreneurs'
   },
-  description: 'Transform your business with AI automation that works. Vynlox helps solo founders save 20+ hours/week using proven no-code AI solutions. Free workshop + strategy audit available.',
+  description: 'Transform your business with AI automation that works. Vynlox helps solo founders save 20+ hours/week using proven AI agent solutions. Free workshop + strategy audit available.',
   keywords: [
     // Primary keywords
     'AI automation for entrepreneurs',
-    'no-code AI solutions',
+    'AI agent solutions',
     'business process automation',
     'AI chatbot for business',
     'workflow automation tools',
     
     // Long-tail keywords
     'AI automation for solo founders',
-    'no-code business automation',
+    'AI business automation',
     'AI lead generation system',
     'automated customer support',
     'business AI consulting',
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://vynlox.com',
     title: 'Vynlox - AI Automation for Solo Founders | Save 20+ Hours/Week',
-    description: 'Transform your business with AI automation that actually works. Join 500+ founders who saved 20+ hours/week with our proven no-code AI solutions. Free workshop available.',
+    description: 'Transform your business with AI automation that actually works. Join 500+ founders who saved 20+ hours/week with our proven AI agent solutions. Free workshop available.',
     siteName: 'Vynlox',
     images: [
       {
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
         url: 'https://vynlox.com/og-image-square.jpg',
         width: 1200,
         height: 1200,
-        alt: 'Vynlox - No-Code AI Solutions',
+        alt: 'Vynlox - AI Agent Solutions',
         type: 'image/jpeg',
       }
     ],

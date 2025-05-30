@@ -76,7 +76,7 @@ export default function Hero() {
             transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
             className="text-xl md:text-2xl text-gray-300 mb-8"
           >
-            Automate your workflow with AI agents built using no-code tools. No technical skills required.
+            Automate your workflow with AI agents built using advanced automation tools. No technical skills required.
           </motion.p>
 
           {/* Value proposition pills */}
@@ -89,7 +89,7 @@ export default function Hero() {
             {[
               { icon: Clock, text: "48-hour setup" },
               { icon: DollarSign, text: "ROI in 30 days" },
-              { icon: Shield, text: "No-code guarantee" }
+              { icon: Shield, text: "AI automation guarantee" }
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-2 px-4 py-2 bg-gray-800/30 backdrop-blur-sm rounded-full border border-gray-700">
                 <item.icon className="w-4 h-4 text-purple-400" />
@@ -162,7 +162,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 1 }}
             className="mt-6 text-gray-400 text-sm"
           >
-            No code. No devs. Just real results — fast.
+            No devs needed. Just real results — fast.
           </motion.p>
         </div>
       </motion.div>

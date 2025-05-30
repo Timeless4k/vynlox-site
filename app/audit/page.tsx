@@ -197,9 +197,9 @@ export default function AuditPage() {
                 <div className="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center">
                   <Settings className="w-6 h-6 text-emerald-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-white">Tool Stack Suggestions</h3>
+                <h3 className="text-lg font-semibold text-white">AI Automation Tool Recommendations</h3>
               </div>
-              <p className="text-gray-400">No-Code + AI tool recommendations for your needs</p>
+              <p className="text-gray-400">AI automation tool recommendations for your needs</p>
             </div>
             
             <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 hover:border-emerald-500/50 transition-all duration-300">

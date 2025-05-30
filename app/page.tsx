@@ -8,6 +8,20 @@ import FounderStory from '@/components/FounderStory';
 import MetricsStrip from '@/components/MetricsStrip';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'AI Automation for Solo Founders | AI Agent Solutions',
+  description: 'Transform your business with AI automation that works. Vynlox helps founders save 20+ hours/week using proven AI solutions. Free workshop + strategy audit available.',
+  openGraph: {
+    title: 'AI Automation for Solo Founders | Save 20+ Hours/Week',
+    description: 'Transform your business with AI automation that actually works. Join founders who saved 20+ hours/week with our proven AI solutions.',
+  },
+  twitter: {
+    title: 'AI Automation That Actually Works for Solo Founders',
+    description: 'Save 20+ hours/week with proven AI automation. Join successful founders.',
+  }
+};
 
 export default function Home() {
   return (

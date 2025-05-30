@@ -30,7 +30,7 @@ const steps = [
     outcome: 'AI Strategy Framework',
     details: [
       'Identify automation opportunities',
-      'Learn no-code AI tools',
+      'Learn AI automation tools',
       'See real business transformations',
       'Get personalized recommendations'
     ]
@@ -68,13 +68,13 @@ const steps = [
   {
     number: '04',
     title: 'We Build the System',
-    description: 'Our team implements your AI agents using no-code tools',
+    description: 'Our team implements your AI agents using advanced automation tools',
     icon: Cog,
     color: 'from-cyan-500 to-emerald-500',
     duration: '2-4 weeks',
     outcome: 'Live AI System',
     details: [
-      'No-code development',
+      'AI automation development',
       'Testing & quality assurance',
       'Training & documentation',
       'Go-live support'

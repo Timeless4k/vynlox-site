@@ -36,7 +36,7 @@ const footerLinks = {
   ],
   resources: [
     { name: 'AI Automation Guide', href: '/guide', icon: Star },
-    { name: 'No-Code Tools List', href: '/tools', icon: Rocket },
+    { name: 'AI Tools List', href: '/tools', icon: Rocket },
     { name: 'Success Stories', href: '/stories', icon: Award },
     { name: 'Blog', href: '/blog', icon: ExternalLink },
     { name: 'FAQ', href: '/faq', icon: CheckCircle },
@@ -165,7 +165,7 @@ export default function Footer() {
             </h3>
             <p className="text-xl text-gray-400 mb-8">
               Join 2,500+ founders getting weekly insights on AI automation, 
-              no-code tools, and business growth strategies.
+              AI automation tools, and business growth strategies.
             </p>
 
             {/* Enhanced Newsletter Form */}
@@ -257,7 +257,7 @@ export default function Footer() {
                   Vynlox
                 </motion.h3>
                 <p className="text-gray-400 text-lg leading-relaxed mb-6">
-                  AI automation for solo founders. No code. No devs. Just results.
+                  AI automation for solo founders. No devs needed. Just results.
                   <br />
                   <span className="text-purple-300">
                     Built by founders, for founders who value their time.
