@@ -25,6 +25,7 @@ import {
   Rocket
 } from 'lucide-react';
 import Link from 'next/link';
+import CookieConsent from './CookieConsent';
 
 const footerLinks = {
   services: [
@@ -92,6 +93,7 @@ export default function Footer() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+  const [showCookieSettings, setShowCookieSettings] = useState(false);
 
   const handleSubmit = async () => {
     if (!email) return;
@@ -425,6 +427,14 @@ export default function Footer() {
                       </a>
                     </li>
                   ))}
+                  <li>
+                    <button
+                      onClick={() => setShowCookieSettings(true)}
+                      className="text-gray-400 hover:text-white transition-colors duration-300 text-sm underline cursor-pointer bg-transparent border-none p-0"
+                    >
+                      Cookie Settings
+                    </button>
+                  </li>
                 </ul>
               </div>
             </motion.div>
@@ -458,6 +468,9 @@ export default function Footer() {
           </div>
         </motion.div>
       </div>
+      {showCookieSettings && (
+        <CookieConsent forceShowPreferences onClose={() => setShowCookieSettings(false)} key="footer-cookie-settings" />
+      )}
     </footer>
   );
 }
