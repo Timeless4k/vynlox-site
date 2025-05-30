@@ -16,6 +16,7 @@ export function middleware(request: NextRequest) {
   // 🔒 Lock all routes except /coming-soon, robots.txt, and analytics-related paths in production
   const allowedPaths = [
     '/coming-soon',
+    '/privacy',
     '/robots.txt',
     '/sitemap.xml',
     '/_next/static',
