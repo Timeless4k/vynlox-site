@@ -34,7 +34,6 @@ interface FormErrors {
   jobTitle?: string;
   industry?: string;
   companySize?: string;
-  interests?: string;
   preferredContactTime?: string;
   timezone?: string;
   message?: string;
@@ -74,37 +73,30 @@ export default function EmailCapture({
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    // Australian phone number regex (supports mobile and landline)
     const ausPhoneRegex = /^(?:\+61|0)[2-4789]\d{8}$/;
 
-    // Email validation
+    // Required fields validation
     if (!formData.email) {
       newErrors.email = 'Email is required';
     } else if (!emailRegex.test(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
 
-    // Name validation
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
     }
 
-    // Company validation
     if (!formData.company.trim()) {
       newErrors.company = 'Company name is required';
     }
 
-    // Phone validation for Australian numbers
     if (!formData.phone) {
       newErrors.phone = 'Phone number is required';
     } else {
       const cleanNumber = formData.phone.replace(/\D/g, '');
-      // Convert to international format for validation
       const internationalNumber = cleanNumber.startsWith('0') 
         ? '+61' + cleanNumber.slice(1) 
-        : cleanNumber.startsWith('61') 
-          ? '+' + cleanNumber 
-          : cleanNumber;
+        : cleanNumber;
       
       if (!ausPhoneRegex.test(internationalNumber)) {
         newErrors.phone = 'Please enter a valid Australian phone number';
@@ -132,12 +124,10 @@ export default function EmailCapture({
       newErrors.timezone = 'Timezone is required';
     }
 
-    // Message validation
     if (additionalFields.message && !formData.message.trim()) {
       newErrors.message = 'Message is required';
     }
 
-    // Unlock code validation
     if (additionalFields.unlockCode && !formData.unlockCode.trim()) {
       newErrors.unlockCode = 'Unlock code is required';
     }
@@ -271,6 +261,7 @@ export default function EmailCapture({
 
       <form onSubmit={handleSubmit} className="space-y-4" noValidate>
         <div className="grid grid-cols-1 gap-4">
+          {/* Required Fields */}
           <div>
             <input
               type="email"
@@ -368,6 +359,7 @@ export default function EmailCapture({
             </p>
           </div>
 
+          {/* Additional Fields */}
           {additionalFields.jobTitle && (
             <div>
               <input
