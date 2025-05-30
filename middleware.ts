@@ -13,10 +13,23 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
+  // 🔒 Block specific footer links
+  const blockedFooterLinks = [
+    '/workshop',
+    '/audit',
+    '/solutions',
+    '/about'
+  ]
+
+  if (blockedFooterLinks.some(blockedPath => path.startsWith(blockedPath))) {
+    return NextResponse.redirect(new URL('/coming-soon', request.url))
+  }
+
   // 🔒 Lock all routes except /coming-soon, robots.txt, and analytics-related paths in production
   const allowedPaths = [
     '/coming-soon',
     '/privacy',
+    '/terms',
     '/robots.txt',
     '/sitemap.xml',
     '/_next/static',
