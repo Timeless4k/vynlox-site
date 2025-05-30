@@ -7,6 +7,7 @@ import VisionTiles from '@/components/VisionTiles';
 import FounderStory from '@/components/FounderStory';
 import MetricsStrip from '@/components/MetricsStrip';
 import FinalCTA from '@/components/FinalCTA';
+import NewsletterSignup from '@/components/NewsletterSignup';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function Home() {
       <SystemProof />
       <HowItWorks />
       <VisionTiles />
+      <NewsletterSignup />
       <FounderStory />
       <MetricsStrip />
       <FinalCTA />
