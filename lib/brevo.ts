@@ -8,15 +8,25 @@ const validateEnvVars = () => {
     'BREVO_PRELAUNCH_LIST_ID',
     'BREVO_DEMO_LIST_ID',
     'BREVO_WORKSHOP_LIST_ID',
-    'BREVO_CONTACT_LIST_ID'
+    'BREVO_CONTACT_LIST_ID',
+    'BREVO_DISCOUNT_LIST_ID',
+    'BREVO_RETAINER_LIST_ID',
+    'BREVO_NEWSLETTER_TEMPLATE_ID',
+    'BREVO_PRELAUNCH_TEMPLATE_ID',
+    'BREVO_DISCOUNT_TEMPLATE_ID',
+    'BREVO_DEMO_TEMPLATE_ID',
+    'BREVO_WORKSHOP_TEMPLATE_ID',
+    'BREVO_CONTACT_TEMPLATE_ID',
+    'BREVO_RETAINER_TEMPLATE_ID',
   ];
 
   const missingVars = requiredVars.filter(varName => !process.env[varName]);
-  
+
   if (missingVars.length > 0) {
-    console.error('Missing required environment variables:', missingVars);
     if (process.env.NODE_ENV === 'production') {
-      throw new Error('Missing required environment variables for Brevo integration');
+      throw new Error('Missing required environment variables for Brevo integration: ' + missingVars.join(', '));
+    } else {
+      console.warn('[Brevo] Missing required environment variables (development only):', missingVars);
     }
   }
 };
