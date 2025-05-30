@@ -25,9 +25,35 @@ const Navbar = () => {
   const [mounted, setMounted] = useState(false);
 
   // Handle hydration mismatch
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  if (!mounted) return null;
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!mounted) {
+    return (
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#0b121b]/95">
+        <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex h-[72px] items-center justify-between">
+            <div className="flex w-full items-center">
+              <div className="flex flex-1">
+                <Link href="/" className="flex-shrink-0">
+                  <Image
+                    src="/images/Logo/Logo 320 x 132.png"
+                    alt="Vynlox"
+                    className="h-[72px] w-auto"
+                    width={320}
+                    height={132}
+                    priority
+                  />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+    );
+  }
 
   return (
     <>

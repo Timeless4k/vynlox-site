@@ -6,7 +6,7 @@ import './globals.css';
 import Navbar from '@/components/Navbar';
 import CookieConsent from "@/components/CookieConsent";
 import Footer from '@/components/Footer';
-import { usePathname } from 'next/navigation';
+import Analytics from '@/components/Analytics';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -135,10 +135,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
-  // Fallback for SSR/SSG: usePathname hook only works in client components
-  // So, we can use a dynamic import or a wrapper if needed, but for now, let's use a workaround
-  const isComingSoon = pathname === '/coming-soon';
   return (
     <html lang="en" className="dark scroll-smooth">
       <head>
@@ -344,44 +340,16 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} bg-[#0F172A] text-white antialiased`}>
-        <Navbar />
-        <main className="min-h-screen pt-[72px]" role="main">
-          {children}
-        </main>
-        <Footer legalOnly={isComingSoon} />
-        <CookieConsent />
-        
-        {/* Analytics and tracking scripts */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              // Google Analytics 4
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-XXXXXXX');
-            `,
-          }}
-        />
-        
-        {/* Hotjar or other heat mapping tools */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              // Hotjar Tracking Code
-              (function(h,o,t,j,a,r){
-                  h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                  h._hjSettings={hjid:1234567,hjsv:6};
-                  a=o.getElementsByTagName('head')[0];
-                  r=o.createElement('script');r.async=1;
-                  r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-                  a.appendChild(r);
-              })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-            `,
-          }}
-        />
+      <body className={`${inter.variable} font-sans antialiased`}>
+        <div className="relative min-h-screen">
+          <Navbar />
+          <main className="relative" role="main">
+            {children}
+          </main>
+          <Footer />
+          <CookieConsent />
+        </div>
+        <Analytics />
       </body>
     </html>
   );
