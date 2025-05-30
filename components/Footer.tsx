@@ -25,6 +25,7 @@ import {
   Rocket
 } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import CookieConsent from './CookieConsent';
 
 const footerLinks = {
@@ -91,9 +92,16 @@ const achievements = [
 export default function Footer({ legalOnly = false }: { legalOnly?: boolean }) {
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const [showCookieSettings, setShowCookieSettings] = useState(false);
+  const [email, setEmail] = useState('');
+
+  const handleEmailSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle email submission logic here
+    console.log('Email submitted:', email);
+  };
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-[#0F172A] relative overflow-hidden">
+    <footer className="bg-[#0b121b] relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
@@ -127,203 +135,127 @@ export default function Footer({ legalOnly = false }: { legalOnly?: boolean }) {
       <div className="container mx-auto px-4 relative z-10">
         {/* Main Footer Content */}
         <div className="py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
-            {/* Column 1: Brand + About */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {/* Column 1: Vynlox */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="lg:col-span-2"
+              className="space-y-6"
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-fuchsia-500 rounded-lg flex items-center justify-center">
-                  <Sparkles className="w-6 h-6 text-white" />
+              <div className="flex items-center">
+                <div className="w-32 h-32 relative">
+                  <Image
+                    src="/images/logo/Logo 320 x 132.png"
+                    alt="Vynlox Logo"
+                    width={128}
+                    height={128}
+                    className="object-contain"
+                  />
                 </div>
-                <h3 className="text-2xl font-bold text-white">Vynlox</h3>
               </div>
-              <p className="text-gray-400 mb-6">
-                Helping founders automate their business with AI. No coding required.
+              <p className="text-gray-400">
+                Smarter systems. Built for founders.
               </p>
-              <div className="grid grid-cols-2 gap-4">
-                {achievements.map((achievement) => (
-                  <div key={achievement.label} className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-purple-500/10 rounded-lg flex items-center justify-center">
-                      <achievement.icon className="w-4 h-4 text-purple-400" />
-                    </div>
-                    <div>
-                      <div className="text-white font-semibold">{achievement.value}</div>
-                      <div className="text-sm text-gray-400">{achievement.label}</div>
-                    </div>
-                  </div>
-                ))}
+              <p className="text-gray-400">
+                We run Vynlox on the same automations we build for clients — no theory, just working systems.
+              </p>
+              <div className="flex items-center gap-4">
+                <a
+                  href="https://linkedin.com/company/vynlox"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-blue-400 transition-colors"
+                >
+                  <Linkedin className="w-6 h-6" />
+                </a>
+                <a
+                  href="mailto:hello@vynlox.com"
+                  className="text-gray-400 hover:text-blue-400 transition-colors"
+                >
+                  <Mail className="w-6 h-6" />
+                </a>
               </div>
             </motion.div>
 
-            {/* Column 2: Services */}
-            {!legalOnly && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-              >
-                <h4 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
-                  <Zap className="w-5 h-5 text-purple-400" />
-                  Services
-                </h4>
-                <ul className="space-y-3">
-                  {footerLinks.services.map((link) => (
-                    <motion.li
-                      key={link.name}
-                      whileHover={{ x: 5 }}
-                      onHoverStart={() => setHoveredLink(link.name)}
-                      onHoverEnd={() => setHoveredLink(null)}
-                    >
-                      <a
-                        href={link.href}
-                        className="group flex items-center gap-3 text-gray-400 hover:text-purple-400 transition-all duration-300"
-                      >
-                        <link.icon className={`w-4 h-4 transition-all duration-300 ${
-                          hoveredLink === link.name ? 'text-purple-400 scale-110' : 'text-gray-500'
-                        }`} />
-                        <span className="group-hover:translate-x-1 transition-transform duration-300">
-                          {link.name}
-                        </span>
-                        {hoveredLink === link.name && (
-                          <ArrowRight className="w-4 h-4 text-purple-400" />
-                        )}
-                      </a>
-                    </motion.li>
-                  ))}
-                </ul>
-              </motion.div>
-            )}
-
-            {/* Column 3: Resources */}
-            {!legalOnly && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-              >
-                <h4 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
-                  <Star className="w-5 h-5 text-fuchsia-400" />
-                  Resources
-                </h4>
-                <ul className="space-y-3">
-                  {footerLinks.resources.map((link) => (
-                    <motion.li
-                      key={link.name}
-                      whileHover={{ x: 5 }}
-                      onHoverStart={() => setHoveredLink(link.name)}
-                      onHoverEnd={() => setHoveredLink(null)}
-                    >
-                      <a
-                        href={link.href}
-                        className="group flex items-center gap-3 text-gray-400 hover:text-fuchsia-400 transition-all duration-300"
-                      >
-                        <link.icon className={`w-4 h-4 transition-all duration-300 ${
-                          hoveredLink === link.name ? 'text-fuchsia-400 scale-110' : 'text-gray-500'
-                        }`} />
-                        <span className="group-hover:translate-x-1 transition-transform duration-300">
-                          {link.name}
-                        </span>
-                        {hoveredLink === link.name && (
-                          <ArrowRight className="w-4 h-4 text-fuchsia-400" />
-                        )}
-                      </a>
-                    </motion.li>
-                  ))}
-                </ul>
-              </motion.div>
-            )}
-
-            {/* Column 4: Social & Legal */}
+            {/* Column 2: Explore */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="space-y-8"
+              transition={{ delay: 0.1 }}
+              className="space-y-6"
             >
-              {/* Social Links */}
-              {!legalOnly && (
-                <div>
-                  <h4 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
-                    <Heart className="w-5 h-5 text-red-400" />
-                    Connect
-                  </h4>
-                  <div className="grid grid-cols-2 gap-3">
-                    {socialLinks.map((social) => (
-                      <motion.a
-                        key={social.name}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        whileTap={{ scale: 0.95 }}
-                        className={`group flex flex-col items-center gap-2 p-3 bg-gray-800/30 backdrop-blur-sm border border-gray-700/50 rounded-lg hover:border-purple-500/30 transition-all duration-300 ${social.color}`}
-                      >
-                        <social.icon className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                        <div className="text-center">
-                          <div className="text-sm font-medium text-white">{social.name}</div>
-                          <div className="text-xs text-gray-400">{social.followers}</div>
-                        </div>
-                      </motion.a>
-                    ))}
-                  </div>
-                </div>
-              )}
+              <h4 className="text-lg font-semibold text-white">Explore</h4>
+              <ul className="space-y-3">
+                <li>
+                  <Link href="/workshop" className="text-gray-400 hover:text-white transition-colors">
+                    Workshop
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/audit" className="text-gray-400 hover:text-white transition-colors">
+                    AI Strategy Audit
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/solutions" className="text-gray-400 hover:text-white transition-colors">
+                    Solutions
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
+                    About
+                  </Link>
+                </li>
+                <li className="flex gap-2 text-gray-400">
+                  <Link href="/privacy" className="hover:text-white transition-colors">
+                    Privacy
+                  </Link>
+                  <span>|</span>
+                  <Link href="/terms" className="hover:text-white transition-colors">
+                    Terms
+                  </Link>
+                </li>
+              </ul>
+            </motion.div>
 
-              {/* Legal Links */}
-              {legalOnly ? (
-                <div>
-                  <h4 className="text-lg font-semibold text-white mb-4">Legal</h4>
-                  <ul className="space-y-2">
-                    <li>
-                      <a
-                        href="/privacy"
-                        className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
-                      >
-                        Privacy Policy
-                      </a>
-                    </li>
-                    <li>
-                      <button
-                        onClick={() => setShowCookieSettings(true)}
-                        className="text-gray-400 hover:text-white transition-colors duration-300 text-sm underline cursor-pointer bg-transparent border-none p-0"
-                      >
-                        Cookie Settings
-                      </button>
-                    </li>
-                  </ul>
+            {/* Column 3: Get Started */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="space-y-6"
+            >
+              <h4 className="text-lg font-semibold text-white">Get Started</h4>
+              <p className="text-gray-400">
+                Join our early access list
+              </p>
+              <p className="text-gray-400">
+                Be first to access workshops, automation templates, and early discounts.
+              </p>
+              <form onSubmit={handleEmailSubmit} className="space-y-4">
+                <div className="flex gap-2">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    className="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    className="px-6 py-2 bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
+                  >
+                    Notify Me
+                  </button>
                 </div>
-              ) : (
-                <div>
-                  <h4 className="text-lg font-semibold text-white mb-4">Legal</h4>
-                  <ul className="space-y-2">
-                    {footerLinks.legal.map((link) => (
-                      <li key={link.name}>
-                        <a
-                          href={link.href}
-                          className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
-                        >
-                          {link.name}
-                        </a>
-                      </li>
-                    ))}
-                    <li>
-                      <button
-                        onClick={() => setShowCookieSettings(true)}
-                        className="text-gray-400 hover:text-white transition-colors duration-300 text-sm underline cursor-pointer bg-transparent border-none p-0"
-                      >
-                        Cookie Settings
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-              )}
+                <p className="text-sm text-gray-500">
+                  We send real tools, not fluff. One-click unsubscribe anytime.
+                </p>
+              </form>
             </motion.div>
           </div>
         </div>
@@ -336,25 +268,16 @@ export default function Footer({ legalOnly = false }: { legalOnly?: boolean }) {
           className="py-8 border-t border-gray-800/50"
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-4">
-              <p className="text-gray-400 text-sm">
-                © 2025 Vynlox. All rights reserved.
-              </p>
-              {!legalOnly && (
-                <div className="hidden md:flex items-center gap-2 text-gray-500 text-sm">
-                  Made with <Heart className="w-4 h-4 text-red-400" /> for founders
-                </div>
-              )}
-            </div>
-            
+            <p className="text-gray-400 text-sm">
+              © {new Date().getFullYear()} Vynlox. All rights reserved.
+            </p>
             {!legalOnly && (
-              <div className="flex items-center gap-4 text-sm text-gray-400">
-                <span>🚀 Helping founders automate since 2023</span>
-                <div className="flex items-center gap-1">
-                  <Star className="w-4 h-4 text-yellow-400" />
-                  <span>4.9/5 rating</span>
-                </div>
-              </div>
+              <button
+                onClick={() => setShowCookieSettings(true)}
+                className="text-gray-400 hover:text-white transition-colors text-sm underline cursor-pointer bg-transparent border-none p-0"
+              >
+                Cookie Settings
+              </button>
             )}
           </div>
         </motion.div>
