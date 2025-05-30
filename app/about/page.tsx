@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import { motion } from 'framer-motion'
 import { BookOpen, Bot, ClipboardList, Gift, User, Clock, Lock, Calendar, Star, ArrowRight, CheckCircle, Target, Zap, Users, Award, Heart, Sparkles, GraduationCap, Rocket, MessageSquare, Phone, Linkedin } from 'lucide-react'
 
@@ -290,7 +289,6 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
-      <Footer />
 
       {/* Custom animations */}
       <style jsx global>{`

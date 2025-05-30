@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import { motion } from 'framer-motion'
 import { BookOpen, Bot, ClipboardList, Gift, User, Clock, Lock, Calendar, Star, ArrowRight, CheckCircle, Target, Zap, Users, Mail, Phone, MapPin, MessageSquare } from 'lucide-react'
 import { useState } from 'react'
@@ -267,7 +266,6 @@ export default function ContactPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   )
 } 

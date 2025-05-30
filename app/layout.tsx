@@ -5,6 +5,8 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import CookieConsent from "@/components/CookieConsent";
+import Footer from '@/components/Footer';
+import { usePathname } from 'next/navigation';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -133,6 +135,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+  // Fallback for SSR/SSG: usePathname hook only works in client components
+  // So, we can use a dynamic import or a wrapper if needed, but for now, let's use a workaround
+  const isComingSoon = pathname === '/coming-soon';
   return (
     <html lang="en" className="dark scroll-smooth">
       <head>
@@ -343,6 +349,8 @@ export default function RootLayout({
         <main className="min-h-screen pt-[72px]" role="main">
           {children}
         </main>
+        <Footer legalOnly={isComingSoon} />
+        <CookieConsent />
         
         {/* Analytics and tracking scripts */}
         <script
@@ -374,7 +382,6 @@ export default function RootLayout({
             `,
           }}
         />
-        <CookieConsent />
       </body>
     </html>
   );

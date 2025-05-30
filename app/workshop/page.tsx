@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import { motion } from 'framer-motion'
 import { BookOpen, Bot, ClipboardList, Gift, User, Clock, Lock, Calendar, Star, ArrowRight, CheckCircle, Target, Zap, Users } from 'lucide-react'
 import { useState, useEffect } from 'react'
@@ -360,8 +359,6 @@ export default function LearnPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
 
       {/* Custom animations and effects */}
       <style jsx global>{`

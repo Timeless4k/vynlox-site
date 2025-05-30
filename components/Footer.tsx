@@ -101,9 +101,9 @@ export default function Footer({ legalOnly = false }: { legalOnly?: boolean }) {
   };
 
   return (
-    <footer className="bg-[#0b121b] relative overflow-hidden">
+    <footer className="bg-[#0b121b] relative overflow-hidden w-full">
       {/* Background Effects */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 w-full">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-fuchsia-500/5 rounded-full blur-3xl" />
       </div>

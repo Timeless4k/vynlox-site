@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import { motion } from 'framer-motion'
 import { BookOpen, Bot, ClipboardList, Gift, User, Clock, Lock, Calendar, Star, ArrowRight, CheckCircle, Target, Zap, Users, Phone, FileText, Map, Settings, Video, Mail, HeadphonesIcon, Shield, MessageSquare, UserCheck, Send, PlayCircle, BarChart3, X } from 'lucide-react'
 import { useState, useEffect } from 'react'
@@ -438,8 +437,6 @@ export default function SolutionsPage() {
           </div>
         </div>
       )}
-
-      <Footer />
 
       {/* Custom animations */}
       <style jsx global>{`

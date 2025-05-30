@@ -7,7 +7,6 @@ import VisionTiles from '@/components/VisionTiles';
 import FounderStory from '@/components/FounderStory';
 import MetricsStrip from '@/components/MetricsStrip';
 import FinalCTA from '@/components/FinalCTA';
-import Footer from '@/components/Footer';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -34,7 +33,6 @@ export default function Home() {
       <FounderStory />
       <MetricsStrip />
       <FinalCTA />
-      <Footer />
     </main>
   );
 }
