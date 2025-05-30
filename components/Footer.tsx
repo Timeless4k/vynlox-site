@@ -88,7 +88,7 @@ const achievements = [
   { label: 'Countries', value: '25+', icon: MapPin },
 ];
 
-export default function Footer() {
+export default function Footer({ legalOnly = false }: { legalOnly?: boolean }) {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -414,29 +414,53 @@ export default function Footer() {
               </div>
 
               {/* Legal Links */}
-              <div>
-                <h4 className="text-lg font-semibold text-white mb-4">Legal</h4>
-                <ul className="space-y-2">
-                  {footerLinks.legal.map((link) => (
-                    <li key={link.name}>
+              {legalOnly ? (
+                <div>
+                  <h4 className="text-lg font-semibold text-white mb-4">Legal</h4>
+                  <ul className="space-y-2">
+                    <li>
                       <a
-                        href={link.href}
+                        href="/privacy"
                         className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
                       >
-                        {link.name}
+                        Privacy Policy
                       </a>
                     </li>
-                  ))}
-                  <li>
-                    <button
-                      onClick={() => setShowCookieSettings(true)}
-                      className="text-gray-400 hover:text-white transition-colors duration-300 text-sm underline cursor-pointer bg-transparent border-none p-0"
-                    >
-                      Cookie Settings
-                    </button>
-                  </li>
-                </ul>
-              </div>
+                    <li>
+                      <button
+                        onClick={() => setShowCookieSettings(true)}
+                        className="text-gray-400 hover:text-white transition-colors duration-300 text-sm underline cursor-pointer bg-transparent border-none p-0"
+                      >
+                        Cookie Settings
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              ) : (
+                <div>
+                  <h4 className="text-lg font-semibold text-white mb-4">Legal</h4>
+                  <ul className="space-y-2">
+                    {footerLinks.legal.map((link) => (
+                      <li key={link.name}>
+                        <a
+                          href={link.href}
+                          className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                        >
+                          {link.name}
+                        </a>
+                      </li>
+                    ))}
+                    <li>
+                      <button
+                        onClick={() => setShowCookieSettings(true)}
+                        className="text-gray-400 hover:text-white transition-colors duration-300 text-sm underline cursor-pointer bg-transparent border-none p-0"
+                      >
+                        Cookie Settings
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              )}
             </motion.div>
           </div>
         </div>
