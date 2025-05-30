@@ -27,6 +27,8 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 import CookieConsent from './CookieConsent';
+import EmailCapture from './EmailCapture';
+import { EmailCapturePurpose } from '@/lib/brevo';
 
 const footerLinks = {
   services: [
@@ -92,13 +94,6 @@ const achievements = [
 export default function Footer({ legalOnly = false }: { legalOnly?: boolean }) {
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const [showCookieSettings, setShowCookieSettings] = useState(false);
-  const [email, setEmail] = useState('');
-
-  const handleEmailSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle email submission logic here
-    console.log('Email submitted:', email);
-  };
 
   return (
     <footer className="bg-[#0b121b] relative overflow-hidden w-full">
@@ -235,27 +230,16 @@ export default function Footer({ legalOnly = false }: { legalOnly?: boolean }) {
               <p className="text-gray-400">
                 Be first to access workshops, automation templates, and early discounts.
               </p>
-              <form onSubmit={handleEmailSubmit} className="space-y-4">
-                <div className="flex gap-2">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    className="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none"
-                    required
-                  />
-                  <button
-                    type="submit"
-                    className="px-6 py-2 bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white rounded-lg font-medium hover:opacity-90 transition-opacity"
-                  >
-                    Notify Me
-                  </button>
-                </div>
-                <p className="text-sm text-gray-500">
-                  We send real tools, not fluff. One-click unsubscribe anytime.
-                </p>
-              </form>
+              <EmailCapture
+                purpose={EmailCapturePurpose.NEWSLETTER}
+                buttonText="Notify Me"
+                successMessage="Thanks! We'll keep you updated."
+                additionalFields={{
+                  name: true,
+                  company: true,
+                  phone: true
+                }}
+              />
             </motion.div>
           </div>
         </div>
