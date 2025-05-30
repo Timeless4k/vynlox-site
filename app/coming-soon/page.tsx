@@ -64,6 +64,7 @@ export default function ComingSoonPage() {
           }
         `}</style>
       </div>
+      <Footer />
     </>
   );
 } 
