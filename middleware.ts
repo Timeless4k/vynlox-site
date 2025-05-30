@@ -36,7 +36,10 @@ export function middleware(request: NextRequest) {
     '/_next/image',
     '/favicon.ico',
     '/images',
-    '/images/Logo/Fabicon 512x512.png'
+    '/images/logo',
+    '/images/logo/Logo 320 x 132.png',
+    '/images/logo/Logo 600x200.png',
+    '/images/logo/Fabicon 512x512.png'
   ]
 
   if (!allowedPaths.some(allowedPath => path.startsWith(allowedPath))) {
