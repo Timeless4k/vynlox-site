@@ -13,8 +13,19 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  // 🔒 Lock all routes except /coming-soon and robots.txt in production
-  if (path !== '/coming-soon' && path !== '/robots.txt') {
+  // 🔒 Lock all routes except /coming-soon, robots.txt, and analytics-related paths in production
+  const allowedPaths = [
+    '/coming-soon',
+    '/robots.txt',
+    '/sitemap.xml',
+    '/_next/static',
+    '/_next/image',
+    '/favicon.ico',
+    '/images',
+    '/images/Logo/Fabicon 512x512.png'
+  ]
+
+  if (!allowedPaths.some(allowedPath => path.startsWith(allowedPath))) {
     return NextResponse.redirect(new URL('/coming-soon', request.url))
   }
 
