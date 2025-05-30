@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { EmailCapturePurpose } from '@/lib/brevo';
 import { CheckCircle, X, AlertCircle } from 'lucide-react';
@@ -34,11 +34,42 @@ interface FormErrors {
   jobTitle?: string;
   industry?: string;
   companySize?: string;
+  interests?: string;
   preferredContactTime?: string;
   timezone?: string;
   message?: string;
   unlockCode?: string;
 }
+
+interface FormData {
+  email: string;
+  name: string;
+  company: string;
+  phone: string;
+  jobTitle: string;
+  industry: string;
+  companySize: string;
+  interests: string;
+  preferredContactTime: string;
+  timezone: string;
+  message: string;
+  unlockCode: string;
+}
+
+const initialFormData: FormData = {
+  email: '',
+  name: '',
+  company: '',
+  phone: '',
+  jobTitle: '',
+  industry: '',
+  companySize: '',
+  interests: '',
+  preferredContactTime: '',
+  timezone: '',
+  message: '',
+  unlockCode: '',
+};
 
 export default function EmailCapture({
   purpose,
@@ -51,24 +82,17 @@ export default function EmailCapture({
   onClose,
   additionalFields = {},
 }: EmailCaptureProps) {
-  const [formData, setFormData] = useState({
-    email: '',
-    name: '',
-    company: '',
-    phone: '',
-    jobTitle: '',
-    industry: '',
-    companySize: '',
-    interests: [] as string[],
-    preferredContactTime: '',
-    timezone: '',
-    message: '',
-    unlockCode: '',
-  });
+  const [formData, setFormData] = useState<FormData>(initialFormData);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    return () => setIsMounted(false);
+  }, []);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -114,6 +138,10 @@ export default function EmailCapture({
 
     if (additionalFields.companySize && !formData.companySize.trim()) {
       newErrors.companySize = 'Company size is required';
+    }
+
+    if (additionalFields.interests && !formData.interests.trim()) {
+      newErrors.interests = 'Interests are required';
     }
 
     if (additionalFields.preferredContactTime && !formData.preferredContactTime.trim()) {
@@ -164,20 +192,7 @@ export default function EmailCapture({
       }
 
       setShowSuccess(true);
-      setFormData({
-        email: '',
-        name: '',
-        company: '',
-        phone: '',
-        jobTitle: '',
-        industry: '',
-        companySize: '',
-        interests: [],
-        preferredContactTime: '',
-        timezone: '',
-        message: '',
-        unlockCode: '',
-      });
+      setFormData(initialFormData);
       setErrors({});
 
       // Hide success message after 3 seconds
@@ -228,6 +243,10 @@ export default function EmailCapture({
     }
   };
 
+  if (!isMounted) {
+    return null;
+  }
+
   if (showSuccess) {
     return (
       <motion.div
@@ -247,6 +266,7 @@ export default function EmailCapture({
         <button
           onClick={onClose}
           className="absolute top-2 right-2 w-8 h-8 rounded-full bg-gray-700/50 hover:bg-gray-600/50 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+          aria-label="Close form"
         >
           <X className="w-4 h-4" />
         </button>
@@ -433,6 +453,30 @@ export default function EmailCapture({
                 <div className="flex items-center gap-1 mt-1 text-red-400 text-sm" id="companySize-error">
                   <AlertCircle className="w-4 h-4" />
                   {errors.companySize}
+                </div>
+              )}
+            </div>
+          )}
+
+          {additionalFields.interests && (
+            <div>
+              <input
+                type="text"
+                name="interests"
+                value={formData.interests}
+                onChange={handleChange}
+                placeholder="Your interests"
+                className={`w-full px-4 py-3 bg-gray-800 border ${
+                  errors.interests ? 'border-red-500' : 'border-gray-700'
+                } rounded-lg text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20`}
+                required
+                aria-invalid={!!errors.interests}
+                aria-describedby={errors.interests ? 'interests-error' : undefined}
+              />
+              {errors.interests && (
+                <div className="flex items-center gap-1 mt-1 text-red-400 text-sm" id="interests-error">
+                  <AlertCircle className="w-4 h-4" />
+                  {errors.interests}
                 </div>
               )}
             </div>
