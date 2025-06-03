@@ -350,6 +350,7 @@ export default function RootLayout({
           <CookieConsent />
         </div>
         <Analytics />
+        <script src="//code.tidio.co/qadwhyyifc7cssbgamxneub2kn6ghdb8.js" async></script>
       </body>
     </html>
   );
