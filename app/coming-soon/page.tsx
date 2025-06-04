@@ -9,10 +9,6 @@ import { EmailCapturePurpose } from '@/lib/brevo';
 
 export default function ComingSoonPage() {
   const [isMiddleware, setIsMiddleware] = useState(false);
-  const [email, setEmail] = useState('');
-  const [isSubscribed, setIsSubscribed] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const controls = useAnimation();
 
   useEffect(() => {
@@ -34,46 +30,6 @@ export default function ComingSoonPage() {
       }
     });
   }, [controls]);
-
-  const handleEmailSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch('/api/capture-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          purpose: EmailCapturePurpose.PRELAUNCH,
-          name: '', // Optional for prelaunch
-          company: '', // Optional for prelaunch
-          phone: '', // Optional for prelaunch
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to subscribe');
-      }
-
-      setIsSubscribed(true);
-      setEmail('');
-      
-      // Reset success message after 3 seconds
-      setTimeout(() => {
-        setIsSubscribed(false);
-      }, 3000);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to subscribe. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   const features = [
     { icon: Zap, text: "Lightning Fast" },
@@ -195,7 +151,7 @@ export default function ComingSoonPage() {
           
           {/* Enhanced grid pattern with subtle animation */}
           <motion.div 
-            className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0di00aC0ydjRoLTR2Mmg0djRoMnYtNGg0di0yaC00em0wLTMwVjBoLTJ2NGgtNHYyaDR2NGgydi00aDRWNmg0VjRoLTR6TTYgMzR2LTRINHY0SDB2Mmg0djRoMnYtNGg0di0ySDZ6TTYgNFYwSDR2NEgwdjJoNHY0aDJWNmg0VjRINnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20"
+            className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0di00aC0ydjRoLTR2Mmg0djRoMnYtNGg0di0ySDR2NEgwdjJoNHY0aDJWNmg0VjRINnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20"
             animate={{
               opacity: [0.15, 0.25, 0.15],
               scale: [1, 1.02, 1],
@@ -340,70 +296,6 @@ export default function ComingSoonPage() {
                       <span className="text-sm font-medium">{feature.text}</span>
                     </motion.div>
                   ))}
-                </motion.div>
-
-                {/* Email Signup */}
-                <motion.div 
-                  className="max-w-md mx-auto mb-8"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.9, duration: 0.8 }}
-                >
-                  {!isSubscribed ? (
-                    <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-3">
-                      <motion.input
-                        type="email"
-                        placeholder="Enter your email for early access"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="flex-1 px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent placeholder-gray-400 text-white"
-                        whileFocus={{ scale: 1.02 }}
-                        required
-                      />
-                      <motion.button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold text-white shadow-lg transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <span className="flex items-center justify-center">
-                          {isSubmitting ? (
-                            <>
-                              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
-                              Subscribing...
-                            </>
-                          ) : (
-                            <>
-                              Join Waitlist
-                              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                            </>
-                          )}
-                        </span>
-                      </motion.button>
-                    </form>
-                  ) : (
-                    <motion.div
-                      className="flex items-center justify-center space-x-2 text-green-400"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <Sparkles className="w-5 h-5" />
-                      <span className="font-semibold">You're on the list! 🎉</span>
-                    </motion.div>
-                  )}
-
-                  {error && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="flex items-center gap-2 text-red-400 bg-red-400/10 px-4 py-2 rounded-lg mt-3"
-                    >
-                      <AlertCircle className="w-5 h-5" />
-                      <span>{error}</span>
-                    </motion.div>
-                  )}
                 </motion.div>
 
                 {/* Social Links */}
