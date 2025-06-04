@@ -1,15 +1,18 @@
 'use client';
 
 import { motion, useAnimation } from 'framer-motion';
-import { ArrowRight, Mail, Sparkles, Zap, Globe, Users } from 'lucide-react';
+import { ArrowRight, Mail, Sparkles, Zap, Globe, Users, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 import CookieConsent from '@/components/CookieConsent';
 import { useEffect, useState } from 'react';
+import { EmailCapturePurpose } from '@/lib/brevo';
 
 export default function ComingSoonPage() {
   const [isMiddleware, setIsMiddleware] = useState(false);
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const controls = useAnimation();
 
   useEffect(() => {
@@ -32,12 +35,43 @@ export default function ComingSoonPage() {
     });
   }, [controls]);
 
-  const handleEmailSubmit = (e: React.FormEvent) => {
+  const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    setError(null);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/capture-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          purpose: EmailCapturePurpose.PRELAUNCH,
+          name: '', // Optional for prelaunch
+          company: '', // Optional for prelaunch
+          phone: '', // Optional for prelaunch
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to subscribe');
+      }
+
       setIsSubscribed(true);
-      setTimeout(() => setIsSubscribed(false), 3000);
       setEmail('');
+      
+      // Reset success message after 3 seconds
+      setTimeout(() => {
+        setIsSubscribed(false);
+      }, 3000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to subscribe. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -328,13 +362,23 @@ export default function ComingSoonPage() {
                       />
                       <motion.button
                         type="submit"
-                        className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold text-white shadow-lg transition-all duration-300 group"
+                        disabled={isSubmitting}
+                        className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-semibold text-white shadow-lg transition-all duration-300 group disabled:opacity-50 disabled:cursor-not-allowed"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
                         <span className="flex items-center justify-center">
-                          Join Waitlist
-                          <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                          {isSubmitting ? (
+                            <>
+                              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
+                              Subscribing...
+                            </>
+                          ) : (
+                            <>
+                              Join Waitlist
+                              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                            </>
+                          )}
                         </span>
                       </motion.button>
                     </form>
@@ -347,6 +391,17 @@ export default function ComingSoonPage() {
                     >
                       <Sparkles className="w-5 h-5" />
                       <span className="font-semibold">You're on the list! 🎉</span>
+                    </motion.div>
+                  )}
+
+                  {error && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-center gap-2 text-red-400 bg-red-400/10 px-4 py-2 rounded-lg mt-3"
+                    >
+                      <AlertCircle className="w-5 h-5" />
+                      <span>{error}</span>
                     </motion.div>
                   )}
                 </motion.div>
