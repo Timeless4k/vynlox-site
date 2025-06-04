@@ -241,7 +241,7 @@ export default function ComingSoonPage() {
                   }}
                 >
                   <motion.span 
-                    className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient-x block"
+                    className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient-x block font-bold"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ 
@@ -252,7 +252,7 @@ export default function ComingSoonPage() {
                     Something
                   </motion.span>
                   <motion.span 
-                    className="text-white block"
+                    className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient-x block font-bold"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ 
