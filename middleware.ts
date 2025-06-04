@@ -39,7 +39,8 @@ export function middleware(request: NextRequest) {
     '/images/logo',
     '/images/logo/Logo 320 x 132.png',
     '/images/logo/Logo 600x200.png',
-    '/images/logo/Fabicon 512x512.png'
+    '/images/logo/Fabicon 512x512.png',
+    '/api/capture-email'
   ]
 
   if (!allowedPaths.some(allowedPath => path.startsWith(allowedPath))) {
